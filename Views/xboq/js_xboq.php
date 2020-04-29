@@ -20,6 +20,23 @@
                 $('.data-list').html(output);
             } 
         });
+        
+        //Set di input dengan id="autocomplete"
+        $("#autocomplete" ).autocomplete({
+            let ajxLink = myBaseURL + 'xboq/saranCari';
+            source: function(request, response) {
+                $.ajax({
+                    url: ajxLink,
+                    data: { term: $("#autocomplete").val()},
+                    dataType: "json",
+                    type: "POST",
+                    success: function(data){
+                        response(data);
+                    }
+                });
+            },
+            minLength: 2
+        });
     });
 
 </script>
